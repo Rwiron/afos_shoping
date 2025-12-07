@@ -1,0 +1,7 @@
+{
+  "name": "Base Supply POS",
+  "description": "Military-grade self-service Point of Sale system for base exchanges and logistics.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
