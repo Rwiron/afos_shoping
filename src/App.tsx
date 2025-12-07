@@ -6,7 +6,7 @@ import ProductCard from './components/ProductCard'
 import CartSidebar, { PaymentMethod } from './components/CartSidebar'
 import PaymentModal from './components/PaymentModal'
 import AuthScreen from './components/AuthScreen'
-import Scanner from './components/Scanner'
+// Scanner component removed
 import { formatCurrency } from './components/currency'
 
 const CATEGORIES: Category[] = [
@@ -25,7 +25,7 @@ const App: React.FC = () => {
   const [cart, setCart] = useState<CartItem[]>([])
   const [isPaymentOpen, setIsPaymentOpen] = useState(false)
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<PaymentMethod>('zigama')
-  const [isScannerOpen, setIsScannerOpen] = useState(false)
+  // Scanner state removed
   const [searchQuery, setSearchQuery] = useState('')
   const [isLoadingProducts, setIsLoadingProducts] = useState(false)
   const [isMobileCartOpen, setIsMobileCartOpen] = useState(false)
@@ -65,10 +65,6 @@ const App: React.FC = () => {
     });
   };
 
-  const handleScanItem = (item: MenuItem) => {
-    addToCart(item);
-    setIsScannerOpen(false);
-  };
 
   const updateQuantity = (cartId: string, delta: number) => {
     setCart(prev => prev.map(item => {
@@ -188,9 +184,6 @@ const App: React.FC = () => {
                   {currentDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' })} at {currentDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
                </div>
                
-               <button onClick={() => setIsScannerOpen(true)} className="p-2 hover:bg-gray-50 rounded-lg border border-gray-200 text-gray-600">
-                  <ScanIcon />
-               </button>
                
                <button onClick={() => setIsMobileCartOpen(!isMobileCartOpen)} className="lg:hidden p-2 hover:bg-gray-50 rounded-lg border border-gray-200 text-gray-600 relative">
                   <ShoppingBagIcon />
@@ -297,12 +290,6 @@ const App: React.FC = () => {
         />
       )}
 
-      {isScannerOpen && (
-        <Scanner 
-          onScan={handleScanItem} 
-          onClose={() => setIsScannerOpen(false)} 
-        />
-      )}
     </div>
   );
 };
